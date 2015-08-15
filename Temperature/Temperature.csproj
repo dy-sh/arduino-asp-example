@@ -270,6 +270,7 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <None Include="Properties\PublishProfiles\Station1.pubxml" />
+    <Content Include="screenshot.PNG" />
     <Content Include="Scripts\amcharts\amcharts.js" />
     <Content Include="Scripts\amcharts\funnel.js" />
     <Content Include="Scripts\amcharts\gantt.js" />

@@ -1,4 +1,5 @@
 This is an example of using the Arduino and ASP.NET.<br>
+You can use this project as the core of your Home automation / Internet of things.<br>
 <br>
 The Arduino connects to the network using an Ethernet Shield. <br>
 ASP.NET project runs on a windows (IIS). <br>

@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Settings";
+}
+
+<div class="page-header">
+    <h1>
+        HOME<br><small>Settings</small>
+    </h1>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Temperature server</div>
+            <div class="panel-body">
+
+                Server is online:
+                @if (ViewBag.IsServerOnline)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br>
+
+                    @:Server works: @ViewBag.OnlineTime sec <br />
+                   
+                    @:Total requests: @ViewBag.TotalRequests
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                }
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Tracking service</div>
+            <div class="panel-body">
+                Temperature tracking enabled:
+                @if (ViewBag.IsTrackingRunning)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br>
+                    @:Next sample at: @ViewBag.NextTrackingTime (in @ViewBag.NextTrackingIn sec)
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                }
+
+                <br>
+                Samples stored: @ViewBag.SamplesCount <br>
+
+                <br>
+                @if (ViewBag.IsTrackingRunning)
+                {
+                    @Html.ActionLink("Stop tracking", "Stop", null, new { @class = "btn btn-default", @role = "button" })
+                }
+                else
+                {
+                    @Html.ActionLink("Start tracking", "Start", null, new { @class = "btn btn-primary", @role = "button" })
+                }
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+    </div>
+</div>
+
+@Html.ActionLink("Background tasks","", "hangfire")

@@ -1,0 +1,168 @@
+﻿@using System.Drawing
+@using Temperature.Models
+
+@model IEnumerable<Temperature.Models.TemperatureSample>
+
+
+
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Temperature History</div>
+    <div class="panel-body">
+        <div id="chartdiv"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+    //------------amcharts------------------
+    var chart = AmCharts.makeChart("chartdiv", {
+        "pathToImages": "@Url.Content("~/Content/amcharts/images/")",
+        //  "dataDateFormat": "YYYY-MM-DD JJ:NN:SS",
+        "type": "serial",
+        "theme": "light",
+        "legend": {
+            "useGraphSettings": true
+        },
+
+        "valueAxes": [
+        {
+            "id": "temperatureAxis",
+            //   "axisAlpha": 0,
+            "gridAlpha": 0,
+            "position": "left",
+            "title": "temperature",
+            // "minimum": 0
+            // "strictMinMax":true
+
+        }, {
+            "id": "humidityAxis",
+            //   "axisAlpha": 0,
+            "gridAlpha": 0,
+            "position": "right",
+            "title": "humidity",
+            //  "minimum": 0
+            //  "strictMinMax": true
+        }],
+        "graphs": [
+             {
+                 "id": "humidityGrid",
+                 "valueField": "humidity",
+                 "type": "smoothedLine",
+                 "connect": false,
+                 "valueAxis": "humidityAxis",
+                 "balloonText": "[[value]] %",
+                 "legendValueText": "[[value]] %",
+                 "title": "Humidity",
+                 "fillAlphas": 0.5
+             },
+            {
+                "id": "temperatureGrid",
+                "valueField": "temperature",
+                "type": "smoothedLine",
+                "connect": false,
+                "valueAxis": "temperatureAxis",
+                "balloonText": "[[value]] C",
+                "legendValueText": "[[value]] C",
+                "title": "Temperature",
+                "bullet": "round",
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "useLineColorForBulletBorder": true
+                //  "hideBulletsCount": 50,
+            }],
+        "chartScrollbar": {
+            //  "graph": "humidityGrid",
+            "oppositeAxis": false,
+            "offset": 30,
+            "scrollbarHeight": 30,
+            "backgroundAlpha": 0,
+            "selectedBackgroundAlpha": 0.1,
+            "selectedBackgroundColor": "#888888"
+        },
+        "chartCursor": {
+            "categoryBalloonDateFormat": "DD.MM JJ:NN",
+            "cursorAlpha": 0.2,
+            "cursorColor": "#777777",
+            "fullWidth": true,
+            "valueBalloonsEnabled": false,
+           //  "pan": true
+        },
+        "categoryField": "date",
+        "categoryAxis": {
+            "parseDates": true,
+            "minPeriod": "hh",
+            "gridColor": "#FFFFFF"
+        },
+        "export": {
+            "enabled": true
+        }
+    });
+
+
+    chart.addListener('zoomed', handleZoom);
+
+     var endDate = new Date();
+     endDate.setHours(endDate.getHours() + 1);
+     var startDate = new Date();
+     startDate.setDate(startDate.getDate() - 1);
+
+    function handleZoom(event) {
+        startDate = event.startDate;
+        endDate = event.endDate;
+    }
+
+    //--------AJAX LOADING-----------------------------
+    var lastDaysLoad = 30;
+
+    var auto_refresh = setInterval(loadChartData, 10000);
+
+    function loadChartData() {
+        // lastDaysLoad = lastDays;
+        $.ajax({
+            url: "@Url.Action("GetAvarageByHourSamples")/" + lastDaysLoad,
+            type: "POST",
+            success: function (data) {
+
+                var oldStartDate = startDate;
+                var oldEndDate = endDate;
+
+                var chartData = [];
+                for (var i = 0; i < data.dateTime.length; i++) {
+                    chartData.push({
+                        date: new Date(data.dateTime[i]),
+                        temperature: data.temperature[i],
+                        humidity: data.humidity[i],
+                    });
+                }
+                chart.dataProvider = chartData;
+                chart.validateData();
+
+                chart.valueAxes[0].minimum = parseInt(chart.valueAxes[0].min);
+                chart.valueAxes[1].minimum = parseInt(chart.valueAxes[1].min);
+                chart.valueAxes[0].maximum = parseInt(chart.valueAxes[0].max);
+                chart.valueAxes[1].maximum = parseInt(chart.valueAxes[1].max);
+                chart.validateData();
+                chart.update();
+
+                chart.zoomToDates(oldStartDate, oldEndDate);
+            }
+        });
+    }
+
+    AmCharts.ready(function() {
+        loadChartData(lastDaysLoad);
+    });
+    //--------------------------------------------------
+
+</script>

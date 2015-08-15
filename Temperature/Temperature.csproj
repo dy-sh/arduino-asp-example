@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B57CF6A1-4B4A-4F82-B7D3-2C571CC15962}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Temperature</RootNamespace>
+    <AssemblyName>Temperature</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hangfire.Core">
+      <HintPath>..\packages\Hangfire.Core.1.4.3\lib\net45\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer">
+      <HintPath>..\packages\Hangfire.SqlServer.1.4.3\lib\net45\Hangfire.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ApplicationPreload.cs" />
+    <Compile Include="Code\ArduinoTemperatureSensor.cs" />
+    <Compile Include="HangfireBootstrapper.cs" />
+    <Compile Include="Code\TemperatureRepository.cs" />
+    <Compile Include="Code\TemperatureTrackingService.cs" />
+    <Compile Include="Code\TimeoutedWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ServerStatus.cs" />
+    <Compile Include="Models\TemperatureSample.cs" />
+    <Compile Include="Models\TemperatureSampleContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\amcharts\images\dragIcon.gif" />
+    <Content Include="Content\amcharts\images\dragIconBlack.gif" />
+    <Content Include="Content\amcharts\images\dragIconH.gif" />
+    <Content Include="Content\amcharts\images\dragIconHBlack.gif" />
+    <Content Include="Content\amcharts\images\dragIconRectBig.png" />
+    <Content Include="Content\amcharts\images\dragIconRectBigBlack.png" />
+    <Content Include="Content\amcharts\images\dragIconRectBigBlackH.png" />
+    <Content Include="Content\amcharts\images\dragIconRectBigH.png" />
+    <Content Include="Content\amcharts\images\dragIconRectSmall.png" />
+    <Content Include="Content\amcharts\images\dragIconRectSmallBlack.png" />
+    <Content Include="Content\amcharts\images\dragIconRectSmallBlackH.png" />
+    <Content Include="Content\amcharts\images\dragIconRectSmallH.png" />
+    <Content Include="Content\amcharts\images\dragIconRoundBig.png" />
+    <Content Include="Content\amcharts\images\dragIconRoundBigBlack.png" />
+    <Content Include="Content\amcharts\images\dragIconRoundBigBlackH.png" />
+    <Content Include="Content\amcharts\images\dragIconRoundBigH.png" />
+    <Content Include="Content\amcharts\images\dragIconRoundSmall.png" />
+    <Content Include="Content\amcharts\images\dragIconRoundSmallBlack.png" />
+    <Content Include="Content\amcharts\images\dragIconRoundSmallBlackH.png" />
+    <Content Include="Content\amcharts\images\dragIconRoundSmallH.png" />
+    <Content Include="Content\amcharts\images\export.png" />
+    <Content Include="Content\amcharts\images\exportWhite.png" />
+    <Content Include="Content\amcharts\images\lens.png" />
+    <Content Include="Content\amcharts\images\lensWhite.png" />
+    <Content Include="Content\amcharts\images\lensWhite_old.png" />
+    <Content Include="Content\amcharts\images\lens_old.png" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\wells.less" />
+    <Content Include="Content\bootstrap\variables.less" />
+    <Content Include="Content\bootstrap\utilities.less" />
+    <Content Include="Content\bootstrap\type.less" />
+    <Content Include="Content\bootstrap\tooltip.less" />
+    <Content Include="Content\bootstrap\thumbnails.less" />
+    <Content Include="Content\bootstrap\theme.less" />
+    <Content Include="Content\bootstrap\tables.less" />
+    <Content Include="Content\bootstrap\scaffolding.less" />
+    <Content Include="Content\bootstrap\responsive-utilities.less" />
+    <Content Include="Content\bootstrap\responsive-embed.less" />
+    <Content Include="Content\bootstrap\progress-bars.less" />
+    <Content Include="Content\bootstrap\print.less" />
+    <Content Include="Content\bootstrap\popovers.less" />
+    <Content Include="Content\bootstrap\panels.less" />
+    <Content Include="Content\bootstrap\pagination.less" />
+    <Content Include="Content\bootstrap\pager.less" />
+    <Content Include="Content\bootstrap\normalize.less" />
+    <Content Include="Content\bootstrap\navs.less" />
+    <Content Include="Content\bootstrap\navbar.less" />
+    <Content Include="Content\bootstrap\modals.less" />
+    <Content Include="Content\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="Content\bootstrap\mixins\text-overflow.less" />
+    <Content Include="Content\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="Content\bootstrap\mixins\table-row.less" />
+    <Content Include="Content\bootstrap\mixins\tab-focus.less" />
+    <Content Include="Content\bootstrap\mixins\size.less" />
+    <Content Include="Content\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="Content\bootstrap\mixins\resize.less" />
+    <Content Include="Content\bootstrap\mixins\reset-filter.less" />
+    <Content Include="Content\bootstrap\mixins\progress-bar.less" />
+    <Content Include="Content\bootstrap\mixins\panels.less" />
+    <Content Include="Content\bootstrap\mixins\pagination.less" />
+    <Content Include="Content\bootstrap\mixins\opacity.less" />
+    <Content Include="Content\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="Content\bootstrap\mixins\nav-divider.less" />
+    <Content Include="Content\bootstrap\mixins\list-group.less" />
+    <Content Include="Content\bootstrap\mixins\labels.less" />
+    <Content Include="Content\bootstrap\mixins\image.less" />
+    <Content Include="Content\bootstrap\mixins\hide-text.less" />
+    <Content Include="Content\bootstrap\mixins\grid-framework.less" />
+    <Content Include="Content\bootstrap\mixins\grid.less" />
+    <Content Include="Content\bootstrap\mixins\gradients.less" />
+    <Content Include="Content\bootstrap\mixins\forms.less" />
+    <Content Include="Content\bootstrap\mixins\clearfix.less" />
+    <Content Include="Content\bootstrap\mixins\center-block.less" />
+    <Content Include="Content\bootstrap\mixins\buttons.less" />
+    <Content Include="Content\bootstrap\mixins\border-radius.less" />
+    <Content Include="Content\bootstrap\mixins\background-variant.less" />
+    <Content Include="Content\bootstrap\mixins\alerts.less" />
+    <Content Include="Content\bootstrap\mixins.less" />
+    <Content Include="Content\bootstrap\media.less" />
+    <Content Include="Content\bootstrap\list-group.less" />
+    <Content Include="Content\bootstrap\labels.less" />
+    <Content Include="Content\bootstrap\jumbotron.less" />
+    <Content Include="Content\bootstrap\input-groups.less" />
+    <Content Include="Content\bootstrap\grid.less" />
+    <Content Include="Content\bootstrap\glyphicons.less" />
+    <Content Include="Content\bootstrap\forms.less" />
+    <Content Include="Content\bootstrap\dropdowns.less" />
+    <Content Include="Content\bootstrap\component-animations.less" />
+    <Content Include="Content\bootstrap\code.less" />
+    <Content Include="Content\bootstrap\close.less" />
+    <Content Include="Content\bootstrap\carousel.less" />
+    <Content Include="Content\bootstrap\buttons.less" />
+    <Content Include="Content\bootstrap\button-groups.less" />
+    <Content Include="Content\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\bootstrap\bootstrap.less" />
+    <Content Include="Content\bootstrap\badges.less" />
+    <Content Include="Content\bootstrap\alerts.less" />
+    <None Include="Properties\PublishProfiles\Station1.pubxml" />
+    <Content Include="Scripts\amcharts\amcharts.js" />
+    <Content Include="Scripts\amcharts\funnel.js" />
+    <Content Include="Scripts\amcharts\gantt.js" />
+    <Content Include="Scripts\amcharts\gauge.js" />
+    <Content Include="Scripts\amcharts\lang\az.js" />
+    <Content Include="Scripts\amcharts\lang\bg.js" />
+    <Content Include="Scripts\amcharts\lang\de.js" />
+    <Content Include="Scripts\amcharts\lang\es.js" />
+    <Content Include="Scripts\amcharts\lang\fi.js" />
+    <Content Include="Scripts\amcharts\lang\fo.js" />
+    <Content Include="Scripts\amcharts\lang\fr.js" />
+    <Content Include="Scripts\amcharts\lang\hr.js" />
+    <Content Include="Scripts\amcharts\lang\hu.js" />
+    <Content Include="Scripts\amcharts\lang\id.js" />
+    <Content Include="Scripts\amcharts\lang\is.js" />
+    <Content Include="Scripts\amcharts\lang\it.js" />
+    <Content Include="Scripts\amcharts\lang\lt.js" />
+    <Content Include="Scripts\amcharts\lang\lv.js" />
+    <Content Include="Scripts\amcharts\lang\mk.js" />
+    <Content Include="Scripts\amcharts\lang\mn.js" />
+    <Content Include="Scripts\amcharts\lang\mt.js" />
+    <Content Include="Scripts\amcharts\lang\nl.js" />
+    <Content Include="Scripts\amcharts\lang\no.js" />
+    <Content Include="Scripts\amcharts\lang\pl.js" />
+    <Content Include="Scripts\amcharts\lang\pt.js" />
+    <Content Include="Scripts\amcharts\lang\ro.js" />
+    <Content Include="Scripts\amcharts\lang\ru.js" />
+    <Content Include="Scripts\amcharts\lang\rw.js" />
+    <Content Include="Scripts\amcharts\lang\sk.js" />
+    <Content Include="Scripts\amcharts\lang\so.js" />
+    <Content Include="Scripts\amcharts\lang\th.js" />
+    <Content Include="Scripts\amcharts\lang\tr.js" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern1.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern10.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern11.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern12.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern13.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern14.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern15.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern16.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern17.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern18.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern19.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern2.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern20.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern21.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern3.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern4.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern5.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern6.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern7.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern8.png" />
+    <Content Include="Scripts\amcharts\patterns\black\pattern9.png" />
+    <Content Include="Scripts\amcharts\patterns\chalk\pattern1.jpg" />
+    <Content Include="Scripts\amcharts\patterns\chalk\pattern1r.jpg" />
+    <Content Include="Scripts\amcharts\patterns\chalk\pattern2.jpg" />
+    <Content Include="Scripts\amcharts\patterns\chalk\pattern3.jpg" />
+    <Content Include="Scripts\amcharts\patterns\chalk\pattern4.jpg" />
+    <Content Include="Scripts\amcharts\patterns\chalk\pattern5.jpg" />
+    <Content Include="Scripts\amcharts\patterns\chalk\pattern6.jpg" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern1.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern10.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern11.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern12.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern13.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern14.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern15.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern16.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern17.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern18.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern19.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern2.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern20.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern21.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern3.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern4.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern5.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern6.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern7.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern8.png" />
+    <Content Include="Scripts\amcharts\patterns\white\pattern9.png" />
+    <Content Include="Scripts\amcharts\pie.js" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\dataloader.js" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\dataloader.min.js" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\gauge.json" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\map.json" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\MSFT.csv" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\MSFT_events.csv" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\pie.csv" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\pie.json" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\serial.csv" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\serial.json" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\serial2.json" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\data\TXN.csv" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\gauge_json.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\map_json.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\pie_csv.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\pie_json.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\serial2_json.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\serial_csv.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\serial_json.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\serial_with_dynamic_graphs.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\examples\stock_csv_data_and_events.html" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\lang\en.js" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\lang\lt.js" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\license.txt" />
+    <Content Include="Scripts\amcharts\plugins\dataloader\readme.md" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\export.config.advanced.js" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\export.config.default.js" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\funnel.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\gantt.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\gauge.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\images\bicycle.png" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\images\car.png" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\images\motorcycle.png" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\index.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\map.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\pie1.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\pie2.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\pie3.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\pie4.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\radar.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\serial1.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\serial2.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\serial3.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\stock.html" />
+    <Content Include="Scripts\amcharts\plugins\export\examples\xy.html" />
+    <Content Include="Scripts\amcharts\plugins\export\export.css" />
+    <Content Include="Scripts\amcharts\plugins\export\export.js" />
+    <Content Include="Scripts\amcharts\plugins\export\export.min.js" />
+    <Content Include="Scripts\amcharts\plugins\export\lang\de.js" />
+    <Content Include="Scripts\amcharts\plugins\export\lang\en.js" />
+    <Content Include="Scripts\amcharts\plugins\export\lang\lt.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\blob.js\blob.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\fabric.js\fabric.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\fabric.js\fabric.min.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\FileSaver.js\FileSaver.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\FileSaver.js\FileSaver.min.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\jszip\jszip.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\jszip\jszip.min.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\pdfmake\pdfmake.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\pdfmake\pdfmake.min.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\pdfmake\pdfmake.min.js.map" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\pdfmake\vfs_fonts.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\xlsx\LICENSE" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\xlsx\xlsx.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\xlsx\xlsx.min.js" />
+    <Content Include="Scripts\amcharts\plugins\export\libs\xlsx\xlsx.min.map" />
+    <Content Include="Scripts\amcharts\plugins\export\LICENSE" />
+    <Content Include="Scripts\amcharts\plugins\export\README.md" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\1.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\10.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\11.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\12.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\13.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\14.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\15.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\16.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\17.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\18.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\19.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\2.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\20.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\21.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\22.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\23.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\24.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\25.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\26.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\27.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\28.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\29.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\3.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\30.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\31.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\4.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\5.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\6.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\7.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\8.svg" />
+    <Content Include="Scripts\amcharts\plugins\export\shapes\9.svg" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\funnel.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\gantt.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\gauge.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\images\bicycle.png" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\images\car.png" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\images\motorcycle.png" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\index.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\map.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\pie1.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\pie2.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\pie3.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\radar.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\serial1.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\serial2.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\serial3.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\stock.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\examples\xy.html" />
+    <Content Include="Scripts\amcharts\plugins\responsive\license.txt" />
+    <Content Include="Scripts\amcharts\plugins\responsive\readme.md" />
+    <Content Include="Scripts\amcharts\plugins\responsive\responsive.js" />
+    <Content Include="Scripts\amcharts\plugins\responsive\responsive.min.js" />
+    <Content Include="Scripts\amcharts\plugins\responsive\responsive.min.js.map" />
+    <Content Include="Scripts\amcharts\radar.js" />
+    <Content Include="Scripts\amcharts\serial.js" />
+    <Content Include="Scripts\amcharts\themes\black.js" />
+    <Content Include="Scripts\amcharts\themes\chalk.js" />
+    <Content Include="Scripts\amcharts\themes\dark.js" />
+    <Content Include="Scripts\amcharts\themes\light.js" />
+    <Content Include="Scripts\amcharts\themes\patterns.js" />
+    <Content Include="Scripts\amcharts\xy.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Icon.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\_TemperatureChart.cshtml" />
+    <Content Include="Views\Home\Settings.cshtml" />
+    <Content Include="Views\Home\_TemperaturePanel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4202</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4202/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

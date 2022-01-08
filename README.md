@@ -1,7 +1,7 @@
 This is an example of using the Arduino and ASP.NET.<br>
 You can use this project as the core of your Home automation / Internet of things.<br>
 <br>
-<img alt="" src="https://raw.githubusercontent.com/dy-sh/ArduinoASP/master/Temperature/screenshot.PNG" >
+<img alt="" src="https://raw.githubusercontent.com/dy-sh/arduino-asp-example/master/Temperature/screenshot.PNG" >
 <br>
 The Arduino connects to the network using an Ethernet Shield. <br>
 ASP.NET project runs on a windows (IIS). <br>
